@@ -1,18 +1,23 @@
+import plagasHerencia.*
+
 class Hogar {
-    const nivelDeMugre 
+    var nivelDeMugre 
     const comfort
-    method esBueno() = nivelDeMugre <= comfort / 2 
+    method esBueno() = nivelDeMugre <= comfort / 2
+    method efectoDelAtaque(unaPlaga)  {nivelDeMugre += unaPlaga.nivelDeDaño()} 
 } 
 
 class Huerta {
-    const kilos
-    const meses 
-    method capacidadDeProduccion() = kilos * meses  
-    method esBueno() = self.capacidadDeProduccion() > nivelMinimo.nivel()  
+    var produccion   
+    method esBueno() = produccion > nivelMinimo.nivel()
+    method efectoDelAtaque(unaPlaga)  { produccion -= unaPlaga.nivelDeDaño() * 0.1
+    + if(unaPlaga.transmiteEnfermedades()) 10 else 0.max(0)}  
+
 }
 class Mascota {
-    const nivelDeSalud
+    var nivelDeSalud
     method esBueno() = nivelDeSalud > 250
+    method efectoDelAtaque(unaPlaga)  {if(unaPlaga.transmiteEnfermedades()) nivelDeSalud -= unaPlaga.nivelDeDaño().max(0)} 
 }
 
 object nivelMinimo {
