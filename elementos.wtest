@@ -1,0 +1,29 @@
+import elementos.*
+
+
+describe "test de barrios y elementos"{
+    const unHogar = new Hogar(nivelDeMugre = 10 , comfort = 20)
+    const unaHuerta = new Huerta(kilos = 10, meses = 3)
+    const unaMascota = new Mascota(nivelDeSalud=330)
+    const caseros = new Barrio()
+
+    method initialize(){
+      caseros.agregarElemento(unHogar)
+      caseros.agregarElemento(unaHuerta)
+      caseros.agregarElemento(unaMascota)
+      }
+
+    test "un hogar es bueno"{
+      assert.that(caseros.unElementoEsBueno(unHogar))
+    }
+    test "una huerta no es bueno"{
+      assert.notThat(caseros.unElementoEsBueno(unaHuerta))
+    }
+    test "una mascota es bueno"{
+      assert.that(caseros.unElementoEsBueno(unaMascota))
+    }
+    test"barrio es copado"{
+      assert.that(caseros.barrioEsCopado())
+    }
+
+}
